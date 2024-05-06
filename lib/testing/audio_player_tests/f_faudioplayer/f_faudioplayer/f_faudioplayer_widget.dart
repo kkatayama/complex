@@ -48,7 +48,7 @@ class _FFaudioplayerWidgetState extends State<FFaudioplayerWidget> {
       alignment: const AlignmentDirectional(-1.0, -1.0),
       child: SizedBox(
         width: 500.0,
-        height: 80.0,
+        height: 100.0,
         child: Stack(
           children: [
             SafeArea(
