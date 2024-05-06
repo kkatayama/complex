@@ -1,12 +1,12 @@
 import '/backend/schema/structs/index.dart';
-import '/components/music_page_buttons_widget.dart';
+import '/components/back_button_bar/back_button_bar_widget.dart';
+import '/components/complayer/complayer_widget.dart';
+import '/components/playlist_pop_up/playlist_pop_up_widget.dart';
+import '/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/back_button_bar/back_button_bar_widget.dart';
-import '/pages/components/complayer/complayer_widget.dart';
-import '/pages/components/playlist_pop_up/playlist_pop_up_widget.dart';
-import '/pages/components/side_nav_playlist/side_nav_playlist_widget.dart';
+import '/testing/n_o_t_used_components/music_page_buttons/music_page_buttons_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

@@ -1,10 +1,10 @@
+import '/components/back_button_bar/back_button_bar_widget.dart';
+import '/components/complayer/complayer_widget.dart';
+import '/components/playlist_pop_up/playlist_pop_up_widget.dart';
+import '/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/back_button_bar/back_button_bar_widget.dart';
-import '/pages/components/complayer/complayer_widget.dart';
-import '/pages/components/playlist_pop_up/playlist_pop_up_widget.dart';
-import '/pages/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';

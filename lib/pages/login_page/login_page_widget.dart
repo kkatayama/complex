@@ -1,12 +1,12 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -31,7 +31,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     _model.usernameFocusNode ??= FocusNode();
 
     _model.passwordTextController ??= TextEditingController();
-    _model.passwordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -45,8 +44,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -334,140 +331,223 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                       16.0),
                                                           child: SizedBox(
                                                             width: 370.0,
-                                                            child:
-                                                                TextFormField(
-                                                              controller: _model
-                                                                  .passwordTextController,
-                                                              focusNode: _model
-                                                                  .passwordFocusNode,
-                                                              autofocus: true,
-                                                              autofillHints: const [
-                                                                AutofillHints
-                                                                    .password
-                                                              ],
-                                                              obscureText: !_model
-                                                                  .passwordVisibility,
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                labelText:
-                                                                    'Password',
-                                                                labelStyle: FlutterFlowTheme.of(
+                                                            child: Autocomplete<
+                                                                String>(
+                                                              initialValue:
+                                                                  const TextEditingValue(),
+                                                              optionsBuilder:
+                                                                  (textEditingValue) {
+                                                                if (textEditingValue
+                                                                        .text ==
+                                                                    '') {
+                                                                  return const Iterable<
+                                                                      String>.empty();
+                                                                }
+                                                                return [
+                                                                  'Option 1'
+                                                                ].where(
+                                                                    (option) {
+                                                                  final lowercaseOption =
+                                                                      option
+                                                                          .toLowerCase();
+                                                                  return lowercaseOption.contains(
+                                                                      textEditingValue
+                                                                          .text
+                                                                          .toLowerCase());
+                                                                });
+                                                              },
+                                                              optionsViewBuilder:
+                                                                  (context,
+                                                                      onSelected,
+                                                                      options) {
+                                                                return AutocompleteOptionsList(
+                                                                  textFieldKey:
+                                                                      _model
+                                                                          .passwordKey,
+                                                                  textController:
+                                                                      _model
+                                                                          .passwordTextController!,
+                                                                  options: options
+                                                                      .toList(),
+                                                                  onSelected:
+                                                                      onSelected,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                  textHighlightStyle:
+                                                                      const TextStyle(),
+                                                                  elevation:
+                                                                      4.0,
+                                                                  optionBackgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryBackground,
+                                                                  optionHighlightColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  maxHeight:
+                                                                      200.0,
+                                                                );
+                                                              },
+                                                              onSelected: (String
+                                                                  selection) {
+                                                                setState(() =>
+                                                                    _model.passwordSelectedOption =
+                                                                        selection);
+                                                                FocusScope.of(
                                                                         context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                    .unfocus();
+                                                              },
+                                                              fieldViewBuilder:
+                                                                  (
+                                                                context,
+                                                                textEditingController,
+                                                                focusNode,
+                                                                onEditingComplete,
+                                                              ) {
+                                                                _model.passwordFocusNode =
+                                                                    focusNode;
+
+                                                                _model.passwordTextController =
+                                                                    textEditingController;
+                                                                return TextFormField(
+                                                                  key: _model
+                                                                      .passwordKey,
+                                                                  controller:
+                                                                      textEditingController,
+                                                                  focusNode:
+                                                                      focusNode,
+                                                                  onEditingComplete:
+                                                                      onEditingComplete,
+                                                                  autofocus:
+                                                                      true,
+                                                                  autofillHints: const [
+                                                                    AutofillHints
+                                                                        .password
+                                                                  ],
+                                                                  obscureText:
+                                                                      !_model
+                                                                          .passwordVisibility,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    labelText:
+                                                                        'Password',
+                                                                    labelStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
                                                                     ),
-                                                                enabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .vibrantLight,
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    errorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    focusedErrorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground,
-                                                                    width: 2.0,
+                                                                    suffixIcon:
+                                                                        InkWell(
+                                                                      onTap: () =>
+                                                                          setState(
+                                                                        () => _model.passwordVisibility =
+                                                                            !_model.passwordVisibility,
+                                                                      ),
+                                                                      focusNode:
+                                                                          FocusNode(
+                                                                              skipTraversal: true),
+                                                                      child:
+                                                                          Icon(
+                                                                        _model.passwordVisibility
+                                                                            ? Icons.visibility_outlined
+                                                                            : Icons.visibility_off_outlined,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12.0),
-                                                                ),
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .vibrantLight,
-                                                                    width: 2.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12.0),
-                                                                ),
-                                                                errorBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    width: 2.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12.0),
-                                                                ),
-                                                                focusedErrorBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    width: 2.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12.0),
-                                                                ),
-                                                                filled: true,
-                                                                fillColor: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                suffixIcon:
-                                                                    InkWell(
-                                                                  onTap: () =>
-                                                                      setState(
-                                                                    () => _model
-                                                                            .passwordVisibility =
-                                                                        !_model
-                                                                            .passwordVisibility,
-                                                                  ),
-                                                                  focusNode: FocusNode(
-                                                                      skipTraversal:
-                                                                          true),
-                                                                  child: Icon(
-                                                                    _model.passwordVisibility
-                                                                        ? Icons
-                                                                            .visibility_outlined
-                                                                        : Icons
-                                                                            .visibility_off_outlined,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                  ),
-                                                              validator: _model
-                                                                  .passwordTextControllerValidator
-                                                                  .asValidator(
-                                                                      context),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                  validator: _model
+                                                                      .passwordTextControllerValidator
+                                                                      .asValidator(
+                                                                          context),
+                                                                );
+                                                              },
                                                             ),
                                                           ),
                                                         ),
@@ -606,35 +686,32 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   ),
                                                                 );
                                                                 FFAppState()
-                                                                    .update(() {
-                                                                  FFAppState()
-                                                                          .ACCESSTOKEN =
-                                                                      ComPlexBackendAPIGroup
-                                                                          .signInCall
-                                                                          .accessToken(
-                                                                    (_model.signInResult
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  )!;
-                                                                  FFAppState()
-                                                                          .USERID =
-                                                                      ComPlexBackendAPIGroup
-                                                                          .signInCall
-                                                                          .userID(
-                                                                            (_model.signInResult?.jsonBody ??
-                                                                                ''),
-                                                                          )!
-                                                                          .toString();
-                                                                  FFAppState()
-                                                                          .USERNAME =
-                                                                      ComPlexBackendAPIGroup
-                                                                          .signInCall
-                                                                          .username(
-                                                                    (_model.signInResult
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  )!;
-                                                                });
+                                                                        .ACCESSTOKEN =
+                                                                    ComPlexBackendAPIGroup
+                                                                        .signInCall
+                                                                        .accessToken(
+                                                                  (_model.signInResult
+                                                                          ?.jsonBody ??
+                                                                      ''),
+                                                                )!;
+                                                                FFAppState()
+                                                                        .USERID =
+                                                                    ComPlexBackendAPIGroup
+                                                                        .signInCall
+                                                                        .userID(
+                                                                          (_model.signInResult?.jsonBody ??
+                                                                              ''),
+                                                                        )!
+                                                                        .toString();
+                                                                FFAppState()
+                                                                        .USERNAME =
+                                                                    ComPlexBackendAPIGroup
+                                                                        .signInCall
+                                                                        .username(
+                                                                  (_model.signInResult
+                                                                          ?.jsonBody ??
+                                                                      ''),
+                                                                )!;
                                                                 await Future
                                                                     .wait([
                                                                   Future(
@@ -646,19 +723,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                       token:
                                                                           currentAuthenticationToken,
                                                                     );
-                                                                    FFAppState()
-                                                                        .update(
-                                                                            () {
-                                                                      FFAppState().RecentlyPlayedTracks = ComPlexBackendAPIGroup
-                                                                          .getPlayhistoryTracksCall
-                                                                          .playhistoryList(
-                                                                            (_model.getplayhistory?.jsonBody ??
-                                                                                ''),
-                                                                          )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                    FFAppState().RecentlyPlayedTracks = ComPlexBackendAPIGroup
+                                                                        .getPlayhistoryTracksCall
+                                                                        .playhistoryList(
+                                                                          (_model.getplayhistory?.jsonBody ??
+                                                                              ''),
+                                                                        )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
                                                                   Future(
                                                                       () async {
@@ -669,18 +742,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                           currentAuthenticationToken,
                                                                     );
                                                                     FFAppState()
-                                                                        .update(
-                                                                            () {
-                                                                      FFAppState()
-                                                                          .SuggestedArtists = GetSuggestedArtistsCall
-                                                                              .artists(
-                                                                        (_model.apiSuggestArtistsHomeRequest?.jsonBody ??
-                                                                            ''),
-                                                                      )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                        .SuggestedArtists = GetSuggestedArtistsCall
+                                                                            .artists(
+                                                                      (_model.apiSuggestArtistsHomeRequest
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                    )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
                                                                   Future(
                                                                       () async {
@@ -691,18 +761,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                           currentAuthenticationToken,
                                                                     );
                                                                     FFAppState()
-                                                                        .update(
-                                                                            () {
-                                                                      FFAppState()
-                                                                          .SuggestedAlbums = GetSuggestedAlbumsCall
-                                                                              .albums(
-                                                                        (_model.apiSuggestedAlbumsRequest?.jsonBody ??
-                                                                            ''),
-                                                                      )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                        .SuggestedAlbums = GetSuggestedAlbumsCall
+                                                                            .albums(
+                                                                      (_model.apiSuggestedAlbumsRequest
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                    )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
                                                                   Future(
                                                                       () async {
@@ -716,18 +783,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                           currentAuthenticationToken,
                                                                     );
                                                                     FFAppState()
-                                                                        .update(
-                                                                            () {
-                                                                      FFAppState()
-                                                                          .AllTracks = GetTracksAlbumsArtistsCall
-                                                                              .tracks(
-                                                                        (_model.apiallitemsinfoRequest?.jsonBody ??
-                                                                            ''),
-                                                                      )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                        .AllTracks = GetTracksAlbumsArtistsCall
+                                                                            .tracks(
+                                                                      (_model.apiallitemsinfoRequest
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                    )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
                                                                   Future(
                                                                       () async {
@@ -741,19 +805,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                       token:
                                                                           currentAuthenticationToken,
                                                                     );
-                                                                    FFAppState()
-                                                                        .update(
-                                                                            () {
-                                                                      FFAppState().AllArtists = ComPlexBackendAPIGroup
-                                                                          .getArtistsCall
-                                                                          .artists(
-                                                                            (_model.apiAllArtistRequest?.jsonBody ??
-                                                                                ''),
-                                                                          )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                    FFAppState().AllArtists = ComPlexBackendAPIGroup
+                                                                        .getArtistsCall
+                                                                        .artists(
+                                                                          (_model.apiAllArtistRequest?.jsonBody ??
+                                                                              ''),
+                                                                        )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
                                                                   Future(
                                                                       () async {
@@ -766,18 +826,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                       token:
                                                                           currentAuthenticationToken,
                                                                     );
-                                                                    setState(
-                                                                        () {
-                                                                      FFAppState()
-                                                                          .AllAlbums = GetAlbumsArtistsCall
-                                                                              .albums(
-                                                                        (_model.apiGetAlbumsRequest?.jsonBody ??
-                                                                            ''),
-                                                                      )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                    FFAppState()
+                                                                        .AllAlbums = GetAlbumsArtistsCall
+                                                                            .albums(
+                                                                      (_model.apiGetAlbumsRequest
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                    )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
                                                                   Future(
                                                                       () async {
@@ -788,26 +846,25 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                       token:
                                                                           currentAuthenticationToken,
                                                                     );
-                                                                    setState(
-                                                                        () {
-                                                                      FFAppState().FavoriteSongs = ComPlexBackendAPIGroup
-                                                                          .getMyFavoritesTracksCall
-                                                                          .favorites(
-                                                                            (_model.apiMyFavoriteTracksRequest?.jsonBody ??
-                                                                                ''),
-                                                                          )!
-                                                                          .toList()
-                                                                          .cast<
-                                                                              dynamic>();
-                                                                    });
+                                                                    FFAppState().FavoriteSongs = ComPlexBackendAPIGroup
+                                                                        .getMyFavoritesTracksCall
+                                                                        .favorites(
+                                                                          (_model.apiMyFavoriteTracksRequest?.jsonBody ??
+                                                                              ''),
+                                                                        )!
+                                                                        .toList()
+                                                                        .cast<
+                                                                            dynamic>();
                                                                   }),
-                                                                  Future(
-                                                                      () async {}),
                                                                 ]);
-
+                                                                if (Navigator.of(
+                                                                        context)
+                                                                    .canPop()) {
+                                                                  context.pop();
+                                                                }
                                                                 context
                                                                     .pushNamedAuth(
-                                                                  'HomePage',
+                                                                  'Test1',
                                                                   context
                                                                       .mounted,
                                                                   extra: <String,

@@ -12,8 +12,10 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   TextEditingController? usernameTextController;
   String? Function(BuildContext, String?)? usernameTextControllerValidator;
   // State field(s) for password widget.
+  final passwordKey = GlobalKey();
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
+  String? passwordSelectedOption;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // Stores action output result for [Backend Call - API (sign_in)] action in Button widget.
@@ -45,6 +47,5 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     usernameTextController?.dispose();
 
     passwordFocusNode?.dispose();
-    passwordTextController?.dispose();
   }
 }

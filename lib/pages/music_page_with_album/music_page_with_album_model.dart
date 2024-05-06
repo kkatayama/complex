@@ -1,9 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/back_button_bar/back_button_bar_widget.dart';
+import '/components/complayer/complayer_widget.dart';
+import '/components/playlist_pop_up/playlist_pop_up_widget.dart';
+import '/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/back_button_bar/back_button_bar_widget.dart';
-import '/pages/components/complayer/complayer_widget.dart';
-import '/pages/components/playlist_pop_up/playlist_pop_up_widget.dart';
-import '/pages/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import 'music_page_with_album_widget.dart' show MusicPageWithAlbumWidget;
 import 'package:flutter/material.dart';
 

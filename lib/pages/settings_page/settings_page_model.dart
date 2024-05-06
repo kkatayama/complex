@@ -1,8 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/complayer/complayer_widget.dart';
+import '/components/playlist_pop_up/playlist_pop_up_widget.dart';
+import '/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/complayer/complayer_widget.dart';
-import '/pages/components/playlist_pop_up/playlist_pop_up_widget.dart';
-import '/pages/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import 'settings_page_widget.dart' show SettingsPageWidget;
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class SettingsPageModel extends FlutterFlowModel<SettingsPageWidget> {
   // Model for PlaylistPopUp component.
   late PlaylistPopUpModel playlistPopUpModel;
   // State field(s) for Switch widget.
-  bool switchValue = true;
+  bool? switchValue;
   // Stores action output result for [Backend Call - API (sign_out)] action in bt_logout widget.
   ApiCallResponse? apiSignOutResult;
   // Model for complayer component.

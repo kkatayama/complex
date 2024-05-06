@@ -1,12 +1,12 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/back_button_bar/back_button_bar_widget.dart';
+import '/components/complayer/complayer_widget.dart';
+import '/components/playlist_pop_up/playlist_pop_up_widget.dart';
+import '/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/back_button_bar/back_button_bar_widget.dart';
-import '/pages/components/complayer/complayer_widget.dart';
-import '/pages/components/playlist_pop_up/playlist_pop_up_widget.dart';
-import '/pages/components/side_nav_playlist/side_nav_playlist_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';

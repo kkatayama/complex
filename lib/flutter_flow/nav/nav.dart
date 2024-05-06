@@ -364,6 +364,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'dashboard',
           path: '/dashboard',
           builder: (context, params) => const DashboardWidget(),
+        ),
+        FFRoute(
+          name: 'Test1',
+          path: '/test1',
+          builder: (context, params) => const Test1Widget(),
+        ),
+        FFRoute(
+          name: 'Test2',
+          path: '/test2',
+          builder: (context, params) => const Test2Widget(),
+        ),
+        FFRoute(
+          name: 'Test3',
+          path: '/test3',
+          builder: (context, params) => const Test3Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
